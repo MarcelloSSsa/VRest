@@ -4,17 +4,11 @@ import android.app.Activity;
 import android.app.com.vrest.R;
 import android.app.com.vrest.models.CharacterCatalog;
 import android.app.com.vrest.models.Result;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
 
 
 public class AdapterCharacterCustom extends BaseAdapter {
@@ -42,6 +36,8 @@ public class AdapterCharacterCustom extends BaseAdapter {
         return 0;
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = act.getLayoutInflater().inflate(R.layout.lista_characters_custom, parent, false);
@@ -55,8 +51,8 @@ public class AdapterCharacterCustom extends BaseAdapter {
         ImageView image = (ImageView)
                 view.findViewById(R.id.lista_characters_custom_image);
 
-        nome.setText(character.name);
-        status.setText(character.status);
+        nome.setText(character.getName());
+        status.setText(character.getStatus());
         //image.setImageResource(result.origin.url);
 
         return view;

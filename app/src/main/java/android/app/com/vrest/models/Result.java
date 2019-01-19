@@ -1,7 +1,5 @@
 package android.app.com.vrest.models;
 
-import java.util.List;
-
 public class Result {
     private String id;
     private String name;

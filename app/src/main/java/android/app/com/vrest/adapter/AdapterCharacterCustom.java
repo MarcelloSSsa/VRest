@@ -36,14 +36,14 @@ public class AdapterCharacterCustom extends BaseAdapter {
         return 0;
     }
 
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = act.getLayoutInflater().inflate(R.layout.lista_characters_custom, parent, false);
 
         Result character = characters.results.get(position);
 
+        TextView id = (TextView)
+                view.findViewById(R.id.lista_characters_custom_id);
         TextView nome = (TextView)
                 view.findViewById(R.id.lista_characters_custom_name);
         TextView status = (TextView)
@@ -51,9 +51,10 @@ public class AdapterCharacterCustom extends BaseAdapter {
         ImageView image = (ImageView)
                 view.findViewById(R.id.lista_characters_custom_image);
 
+        //image.setImageResource(result.origin.url);
+        id.setText( character.getId() );
         nome.setText(character.getName());
         status.setText(character.getStatus());
-        //image.setImageResource(result.origin.url);
 
         return view;
     }

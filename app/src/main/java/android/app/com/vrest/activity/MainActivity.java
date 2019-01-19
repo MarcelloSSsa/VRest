@@ -1,8 +1,9 @@
-package android.app.com.vrest;
+package android.app.com.vrest.activity;
 
+import android.app.com.vrest.ApiService;
+import android.app.com.vrest.R;
 import android.app.com.vrest.adapter.AdapterCharacterCustom;
 import android.app.com.vrest.models.Result;
-import android.app.com.vrest.models.Origin;
 import android.app.com.vrest.models.CharacterCatalog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView( R.layout.activity_main);
 
         listaCharacters = findViewById( R.id.charactersList );
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiService.BASE_URL)
+                .baseUrl( ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -63,10 +63,13 @@ public class MainActivity extends AppCompatActivity {
                     listaCharacters.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                             Intent intent = new Intent( MainActivity.this, DescriptionActivity.class );
-                            String selectedName =((TextView)view.findViewById(R.id.lista_characters_custom_name)).getText().toString();
-                            intent.putExtra( "name", selectedName );
-                            Toast.makeText( MainActivity.this, selectedName,Toast.LENGTH_SHORT ).show();
+                            Result r = (Result) parent.getAdapter().getItem( position );
+                            intent.putExtra( "id", r.getName() );
+
+                            //Toast.makeText( MainActivity.this, r.getName(),Toast.LENGTH_SHORT ).show();
+
                             startActivity( intent );
                         }
                     } );

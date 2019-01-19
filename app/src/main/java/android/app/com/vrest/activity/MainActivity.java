@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     final CharacterCatalog catalog = response.body();
-                    for (Result c : catalog.results){
+                    /*for (Result c : catalog.results){
                         Log.i("RESULT", String.format("id; %s, name: %s\nNome origin: %s, URL: %s\n"
                                 ,c.getId(), c.getName(), c.getOrigin().getName(), c.getOrigin().getUrl()));
 
                         Log.i("RESULT", "/////////////////////////////////////////");
-                    }
+                    }*/
 
                     AdapterCharacterCustom adapter =
                             new AdapterCharacterCustom(catalog,MainActivity.this);
@@ -66,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
                             Intent intent = new Intent( MainActivity.this, DescriptionActivity.class );
                             Result r = (Result) parent.getAdapter().getItem( position );
-                            intent.putExtra( "id", r.getName() );
+                            intent.putExtra( "id", r.getId() );
+                            intent.putExtra( "name", r.getName() );
+                            intent.putExtra( "status", r.getStatus() );
+                            intent.putExtra( "species", r.getSpecies() );
+                            intent.putExtra( "gender", r.getGender() );
+                            intent.putExtra( "image", r.getImage() );
+                            intent.putExtra( "origin", r.getOrigin().getName() );
 
                             //Toast.makeText( MainActivity.this, r.getName(),Toast.LENGTH_SHORT ).show();
 

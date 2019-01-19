@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.squareup.picasso.Picasso;
 
 public class DescriptionActivity extends AppCompatActivity {
 
@@ -48,9 +48,11 @@ public class DescriptionActivity extends AppCompatActivity {
             statusCharacter = extra.getString( "status" );
             speciesCharacter = extra.getString( "species" );
             genderCharacter = extra.getString( "gender" );
-            //imageCharacter = extra.getString( "image" );
+            imageCharacter = extra.getString( "image" );
             originCharacter = extra.getString( "origin" );
         }
+
+        Picasso.with(getApplicationContext()).load(imageCharacter).into(imageCharacterProfile);
         idText.setText( idCharacter );
         nameText.setText( nameCharacter );
         statusText.setText( statusCharacter );

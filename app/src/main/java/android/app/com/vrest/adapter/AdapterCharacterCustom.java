@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
 
 public class AdapterCharacterCustom extends BaseAdapter {
@@ -50,6 +51,8 @@ public class AdapterCharacterCustom extends BaseAdapter {
                 view.findViewById(R.id.lista_characters_custom_description);
         ImageView image = (ImageView)
                 view.findViewById(R.id.lista_characters_custom_image);
+
+        Picasso.with( act ).load(character.getImage()).into(image);
 
         //image.setImageResource(result.origin.url);
         id.setText( character.getId() );

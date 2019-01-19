@@ -3,6 +3,7 @@ package android.app.com.vrest.activity;
 import android.app.com.vrest.ApiService;
 import android.app.com.vrest.R;
 import android.app.com.vrest.adapter.AdapterCharacterCustom;
+import android.app.com.vrest.models.Info;
 import android.app.com.vrest.models.Result;
 import android.app.com.vrest.models.CharacterCatalog;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import retrofit2.Call;
@@ -21,6 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listaCharacters;
+    private Button prev;
+    private Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView( R.layout.activity_main);
 
         listaCharacters = findViewById( R.id.charactersList );
+        prev = findViewById( R.id.id_button_prev );
+        next = findViewById( R.id.id_next_button );
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl( ApiService.BASE_URL)
@@ -47,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     final CharacterCatalog catalog = response.body();
-                    /*for (Result c : catalog.results){
-                        Log.i("RESULT", String.format("id; %s, name: %s\nNome origin: %s, URL: %s\n"
-                                ,c.getId(), c.getName(), c.getOrigin().getName(), c.getOrigin().getUrl()));
-
-                        Log.i("RESULT", "/////////////////////////////////////////");
-                    }*/
 
                     AdapterCharacterCustom adapter =
                             new AdapterCharacterCustom(catalog,MainActivity.this);
@@ -89,5 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("ERRO", "Verifique a conexão com a internet (" + t.getMessage() + ")");
             }
         });
+
+        prev.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        } );
     }
 }

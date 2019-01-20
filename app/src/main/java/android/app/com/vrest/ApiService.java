@@ -11,6 +11,6 @@ public interface ApiService {
     @GET("character")
     Call<CharacterCatalog> listCatalog();
 
-    @GET("character")
-    Call<CharacterCatalog> listInfo(@Query( "url" ) String url);
+    @GET("character/")
+    Call<CharacterCatalog> listPage(@Query( "page" ) int url);
 }
